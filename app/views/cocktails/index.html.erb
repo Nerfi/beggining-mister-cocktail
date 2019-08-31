@@ -1,0 +1,32 @@
+<div class="banner">
+  <h1>Here we have our cocktails</h1>
+
+
+
+
+</div>
+
+
+<div class="container">
+
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+
+        <% @cocktails.each do |c| %>
+        <%= link_to c.name,cocktail_path(@cocktails)  %>
+        <h5 class="card-title"><%= c.name %></h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+
+        <%  end  %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
