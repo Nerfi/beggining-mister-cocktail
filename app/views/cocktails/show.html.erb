@@ -9,14 +9,28 @@
 
   <%= link_to "New dose", new_cocktail_dose_path(@cocktail) %> <br>
 
-    <%= @cocktail.ingredients.name %>
+
 
 
 <br>
 <%= link_to "bakc home", cocktails_path  %>
 </div>
 
+<div class="container">
+  <!--  nota mental, cuando tenemos un joint table si queremos retrive data from the join table , debemos acceder a la join table and then retrieve los datos que queremos tener, en este caso queremos acceder a los ingredients of each cocktail, para ello tenemos que acceder a la join table y una vez conseguido cogeremos los datos que queramos de la otra table, mirar ejemplo debajo o en kit Associations & Validations
+  -->
+  <h1>Check this out</h1>
+  <% @cocktail.doses.each do |dose|  %>
 
+  <%= dose.ingredient.name %>
+  <p>juan</p>
+  <% dose.description %>
+  <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-trash destroy_dose"></i>
+     <% end %>
+  <% end %>
+
+</div>
 
 
 
