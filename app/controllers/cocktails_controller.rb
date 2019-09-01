@@ -8,6 +8,7 @@ class CocktailsController < ApplicationController
   def show
     @cocktail = Cocktail.find(params[:id])
     @dose = Dose.new
+    @review = Review.new
 
   end
 
@@ -18,6 +19,11 @@ class CocktailsController < ApplicationController
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
+    if @cocktail.save
+      redirect_to cocktails_path(@cocktail)
+    else
+      render :new
+    end
 
   end
 

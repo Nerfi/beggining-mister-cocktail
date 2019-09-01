@@ -1,10 +1,41 @@
 <div class="show-container">
   <h2>Have a look at <%= @cocktail.name %></h2>
+  <p>
+
+  </p>
 
 </div>
+<div class="container">
 
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.submit "add a dose", class: "btn btn-primary" %>
-<% end %>
+  <%= link_to "New dose", new_cocktail_dose_path(@cocktail) %> <br>
 
+    <%= @cocktail.ingredients.name %>
+
+
+<br>
+<%= link_to "bakc home", cocktails_path  %>
+</div>
+
+
+
+
+
+
+<h3>Reviews</h3>
+  <% if @cocktail.reviews.empty? %>
+    <p>Be the first to let a review</p>
+  <% else %>
+    <ul class="list-group">
+      <% @cocktail.reviews.each do |review| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span class="badge badge-primary badge-pill">
+
+
+          </span>
+          <%= review.content %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= render "reviews/new", cocktail: @cocktail, review: @review %>
