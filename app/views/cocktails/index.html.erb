@@ -7,8 +7,6 @@
 
 <div class="container">
 
-
-
 <div class="row">
   <div class="col-sm-4">
     <div class="card">
@@ -16,6 +14,11 @@
 
         <% @cocktails.each do |c| %>
         <%= link_to c.name,cocktail_path(c)  %>
+        <% if c.photo? %>
+        <% background_url = cl_image_path c.photo, width:400, height:500, crop: :fill %>
+        <% else %>
+        <% background_url = 'https://source.unsplash.com/500x400/?cocktail' %>
+        <% end %>
 
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -45,6 +48,31 @@
     <% @cocktails.each do |cocktail| %>
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/500x400/?cocktail');">
+          <div class="card-description">
+            <h2><%= cocktail.name %></h2>
+          </div>
+          <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<!-- lewagon solution  for img as a background -->
+
+
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-12 col-md-6 col-lg-3">
+        <% if cocktail.photo? %>
+          <% background_url = cl_image_path cocktail.photo, width: 400, height: 500, crop: :fill %>
+        <% else %>
+          <% background_url = 'https://source.unsplash.com/500x400/?cocktail' %>
+        <% end %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= background_url %>');">
           <div class="card-description">
             <h2><%= cocktail.name %></h2>
           </div>
